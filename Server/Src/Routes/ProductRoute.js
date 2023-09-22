@@ -35,7 +35,7 @@ app.delete("/:id", async (req, res) => {
 app.patch("/:id", async (req, res) => {
   const payload = req.body;
   try {
-    await Product.findByIdAndUpdate({ _id: req.params.id }, payload);
+    await productModel.findByIdAndUpdate({ _id: req.params.id }, payload);
     return res.status(200).send({ message: "product updated successfully  " });
   } catch (error) {
     return res.status(400).send(error.message);
