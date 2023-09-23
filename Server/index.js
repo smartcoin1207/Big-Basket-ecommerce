@@ -15,7 +15,7 @@ app.use(cors());
 app.use("/product", productrouter);
 app.use("/payment", paymentrouter);
 
-// admin
+// admin page data
 
 app.use("/admin", adminrouter);
 app.use(authenticate);
