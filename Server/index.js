@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
   res.send("welcome to big basket");
 });
 
-app.listen(3000, async (req, res) => {
+app.listen(4000, async (req, res) => {
   try {
     await connect();
     console.log("connected to server");
