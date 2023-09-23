@@ -11,8 +11,8 @@ const Card = ({image,title1,title2,title3,title4,offer,price,_id})=>{
     return(
         <Box display={'block'} m={'auto'} alignItems={'center'} textAlign={'left'}
         fontWeight={'bold'}
-        height={"auto"}
-        lineHeight={'none'}
+        height={"470px"}
+        lineHeight={'0.5'}
         margin={"20px"}
         padding={"20px"}
         bgColor={'rgb(245, 243, 243)'}
@@ -27,8 +27,8 @@ const Card = ({image,title1,title2,title3,title4,offer,price,_id})=>{
             <Text>{title3}</Text>
             <Text>{title4}</Text>
             <Text>{offer}</Text>
-            <Text>{price}</Text>
-            <Button onClick={()=>addCart()} w={'100%'} textAlign={'center'}>ORDER NOW</Button>
+            <Text>Price: <span style={{color:'red'}}>{price}</span> </Text>
+            <Button bgColor={'#4a84d5'} onClick={()=>addCart()} w={'100%'} textAlign={'center'}>ORDER NOW</Button>
         </Box>
     )
 }
