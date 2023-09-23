@@ -1,20 +1,10 @@
 const express = require("express");
-const { productModel } = require("../Models/ProductModel");
+const { AdminProductModel } = require("../Models/AdminProductModel");
 const app = express.Router();
 
 app.get("/", async (req, res) => {
   try {
-    let product = await productModel.find();
-    res.status(200).send(product);
-  } catch (error) {
-    return res.status(400).send(error.message);
-  }
-});
-
-// product for admin
-app.get("/allprodAdmin", async (req, res) => {
-  try {
-    let product = await productModel.find();
+    let product = await AdminProductModel.find();
     res.status(200).send(product);
   } catch (error) {
     return res.status(400).send(error.message);
@@ -25,18 +15,17 @@ app.get("/allprodAdmin", async (req, res) => {
 
 app.get("/:id", async (req, res) => {
   try {
-    let product = await productModel.findById({ _id: req.params.id });
+    let product = await AdminProductModel.findById({ _id: req.params.id });
     return res.status(200).send(product);
   } catch (error) {
     return res.status(400).send(error.message);
   }
 });
 
-// post request
 app.post("/", async (req, res) => {
   const payload = req.body;
   try {
-    const product = new productModel(payload);
+    const product = new AdminProductModel(payload);
     await product.save();
     return res.status(201).send({ message: "product added successfully" });
   } catch (error) {
@@ -45,7 +34,7 @@ app.post("/", async (req, res) => {
 });
 app.delete("/:id", async (req, res) => {
   try {
-    let product = await productModel.findByIdAndDelete({
+    let product = await AdminProductModel.findByIdAndDelete({
       _id: req.params.id,
     });
     return res.status(200).send({ message: "product Deleted successfully " });
@@ -57,7 +46,7 @@ app.delete("/:id", async (req, res) => {
 app.patch("/:id", async (req, res) => {
   const payload = req.body;
   try {
-    await productModel.findByIdAndUpdate({ _id: req.params.id }, payload);
+    await AdminProductModel.findByIdAndUpdate({ _id: req.params.id }, payload);
     return res.status(200).send({ message: "product updated successfully  " });
   } catch (error) {
     return res.status(400).send(error.message);
