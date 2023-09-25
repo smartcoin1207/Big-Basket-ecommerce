@@ -147,83 +147,62 @@ import {
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 import { MdLocalShipping } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import Crousel from "../Components/Crousel";
 import { Link } from "react-router-dom";
-// import { AddToCart } from "../../Redux/cartReducer/action";
-// import SngleProductSkeleton from "./SngleProductSkeleton";
-export default function MensProductsCard() {
+import axios from "axios";
+import SngleProductSkeleton from "./SingleProductLoader";
+import { AddToCart } from "../Redux/cartReducer/action";
+export default function SingleProduct() {
   const { id } = useParams();
   const [data, setdata] = useState({});
   const [load, setLoad] = useState(false);
   const toast = useToast();
   const dispatch = useDispatch();
-//   const {
-//     name,
-//     category,
-//     brand,
-//     description,
-//     discount,
-//     design,
-//     offer,
-//     rating,
-//     price,
-//     image,
-//     type,
-//     tags,
-//   } = data;
-//   useEffect(() => {
-//     setLoad(true);
-//     fetch(`http://localhost:4000/product/${id}`)
-//       .then((res) => res.json())
-//       .then((res) => {
-//         setdata(res.data);
-//         setLoad(false);
-//       })
-//       .catch((err) => {
-//         setLoad(false);
-//         console.log(err);
-//       });
-//   }, []);
-//   const addToCartFun = (data) => {
-//     dispatch(AddToCart(data))
-//       .then((res) => {
-//         console.log(res.msg);
-//         if (res.msg.includes("Added")) {
-//           return toast({
-//             title: res.msg,
-//             status: "success",
-//             duration: 2000,
-//             position: "top",
-//             isClosable: true,
-//           });
-//         } else {
-//           return toast({
-//             title: res.msg,
-//             status: "warning",
-//             duration: 2000,
-//             position: "top",
-//             isClosable: true,
-//           });
-//         }
-//       })
-//       .catch((err) => {
-//         return toast({
-//           title: "Something wen wrong",
-//           status: "warning",
-//           duration: 2000,
-//           position: "top",
-//           isClosable: true,
-//         });
-//       });
-//   };
-  return (
-    <div>
 
-<Box>
-<Crousel/>
-</Box>
+  const fetchData = ()=>{
+    setLoad(true);
+    axios.get(`http://localhost:8080/product/${id}`)
+    .then((res)=>{
+      setdata(res.data);
+      setLoad(false)
+    }) 
+    .catch((err)=>{
+      setLoad(false);
+      console.log(err);
+    })
+}
 
-        <Container maxW={"7xl"}  w={"80%"} margin={"auto"}>
+useEffect(()=>{
+    fetchData()
+},[]);
+const {image,offer,price,title1,title2,title3,title4} = data;
+
+const addToCartFun = () => {
+    dispatch(AddToCart(data))
+      .then((res) => {
+          return toast({
+            title: 'Added to your cart',
+            status: "success",
+            duration: 2000,
+            position: "top",
+            isClosable: true,
+          });
+        
+      })
+      .catch((err) => {
+        return toast({
+          title: "Something wen wrong",
+          status: "warning",
+          duration: 2000,
+          position: "top",
+          isClosable: true,
+        });
+      });
+  };
+
+
+return ( load ? <SngleProductSkeleton/> :
+      <div>
+        <Container maxW={"7xl"}  w={"90%"} margin={"auto"}>
           <SimpleGrid
             columns={{ base: 1, lg: 2 }}
             spacing={{ base: 8, md: 10 }}
@@ -233,10 +212,10 @@ export default function MensProductsCard() {
               <Image
                 rounded={"md"}
                 alt={"product image"}
-                src={'https://bigbasket.website/createives/4k.png'}
+                src={image}
                 align={"center"}
                 w={"100%"}
-                height={"400px"}
+                height={"auto"}
               />
             </Flex>
             <Stack textAlign={'left'} spacing={{ base: 6, md: 10 }}>
@@ -244,12 +223,12 @@ export default function MensProductsCard() {
                 <Heading
                   lineHeight={1.1}
                   fontWeight={600}
-                  fontSize={{ base: "2xl", sm: "4xl", lg: "5xl" }}
+                  fontSize={{ base: "1xl", sm: "2xl", lg: "3xl" }}
                 >
-                  {'Chawal'}
+                  {`${title1} || ${title2} || ${title3} || ${title4} `}
                 </Heading>
                 <Text fontWeight={300} fontSize={"2xl"}>
-                  ₹{100}
+                  ₹{price}
                 </Text>{" "}
                 {/* <Flex gap={1}>
                   {rating &&
@@ -306,8 +285,8 @@ export default function MensProductsCard() {
 
                   <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
                     <Flex gap={"2"}>
-                      <Badge p="0.2rem">{`Offer ${'50%'}`}</Badge>
-                      <Badge p="0.2rem">{`Discount ${''}`}</Badge>
+                      <Badge p="0.2rem">{`Offer ${offer}`}</Badge>
+                      <Badge p="0.2rem">{`Discount ${'20%'}`}</Badge>
                       {/* {tags?.map((el) => {
                         return (
                           <Badge p="0.2rem" colorScheme="green">
@@ -359,7 +338,6 @@ export default function MensProductsCard() {
                 </Box> */}
               </Stack>
 
-<Link to="/shopping">
 
               <Button
                 rounded={"none"}
@@ -374,13 +352,12 @@ export default function MensProductsCard() {
                   transform: "translateY(2px)",
                   boxShadow: "lg",
                 }}
-                // onClick={() => {
-                //   addToCartFun(data);
-                // }}
+                onClick={() => {
+                  addToCartFun();
+                }}
               >
                 Add to cart
               </Button>
-              </Link>
 
               <Stack
                 direction="row"

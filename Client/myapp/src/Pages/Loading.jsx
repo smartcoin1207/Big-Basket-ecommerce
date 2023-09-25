@@ -10,8 +10,8 @@ import {
   
   const Loading = () => {
     return (
-      <Flex>
-        <Box w={"20%"} padding="6" boxShadow="lg" bg="white">
+      <Flex w={'100%'} m={'auto'}>
+        {/* <Box w={"20%"} padding="6" boxShadow="lg" bg="white">
           <SkeletonCircle size="10" />
   
           <Skeleton height="50px" mb={"10px"} margin="auto" />
@@ -25,8 +25,8 @@ import {
           <Skeleton height="20px" mt={"50px "} mb={"10px"} />
           <Skeleton height="20px" mb={"10px"} />
           <Skeleton height="20px" mb={"10px"} />
-        </Box>
-  
+        </Box> */}
+
         <Grid
           mt={"30px"}
           marginLeft={"40px"}
@@ -34,7 +34,7 @@ import {
           width={"80%"}
           templateColumns="repeat(3, 1fr)"
           gap={6}
-        >
+          >
           <Box height={"auto"}>
             <Skeleton height="250px " mb={"10px"} />
   
