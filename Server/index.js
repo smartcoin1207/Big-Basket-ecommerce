@@ -32,6 +32,9 @@ app.get("/", (req, res) => {
 });
 
 app.listen(8080, async (req, res) => {
+
+
+
   try {
     await connect();
     console.log("connected to server");
@@ -40,3 +43,4 @@ app.listen(8080, async (req, res) => {
   }
   console.log("server running at port 8080");
 });
+
