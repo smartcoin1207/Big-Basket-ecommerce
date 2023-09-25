@@ -8,6 +8,8 @@ const productSchema = new mongoose.Schema(
     title4: String,
     offer: String,
     price: Number,
+    rating: String,
+    quantity: Number,
   },
   {
     versionKey: false,

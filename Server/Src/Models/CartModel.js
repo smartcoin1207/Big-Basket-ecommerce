@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const AdminproductSchema = new mongoose.Schema(
+const CartSchema = new mongoose.Schema(
   {
     image: String,
     title1: String,
@@ -17,6 +17,6 @@ const AdminproductSchema = new mongoose.Schema(
   }
 );
 
-const AdminProductModel = mongoose.model("AdminProduct", AdminproductSchema);
+const CartModel = mongoose.model("Cart", CartSchema);
 
-module.exports = { AdminProductModel };
+module.exports = { CartModel };
