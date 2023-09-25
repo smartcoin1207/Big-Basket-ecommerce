@@ -3,7 +3,7 @@ const { productModel } = require("../Models/ProductModel");
 const { CartModel } = require("../Models/CartModel");
 const app = express.Router();
 
-app.get("", async (req, res) => {
+app.get("/", async (req, res) => {
   try {
     let cart = await CartModel.find({ user: req._id });
     // .populate([
@@ -32,6 +32,7 @@ app.post("/:id", async (req, res) => {
   const productID = req.params.id;
   try {
     let product = await productModel.findById({ _id: productID });
+    console.log(product);
     let cartItem = await CartModel.findOne({
       user: req._id,
       product: productID,
@@ -42,24 +43,26 @@ app.post("/:id", async (req, res) => {
           message: `Database hav only ${product.quantity} quantity left`,
         });
       } else {
-        let cart = await CartModel.create({
-          product: productID,
+        let cart = new CartModel({
+          product: product._id,
           user: req._id,
-          quantity: quantity,
-          image: image,
-          title1: title1,
-          title2: title2,
-          title3: title4,
-          title4: title4,
-          offer: offer,
-          price: price,
-          rating: rating,
+          quantity: product.quantity,
+          image: product.image,
+          title1: product.title1,
+          title2: product.title2,
+          title3: product.title4,
+          title4: product.title4,
+          offer: product.offer,
+          price: product.price,
+          rating: product.rating,
         });
-        await productModel.findByIdAndUpdate(
-          { _id: productID },
-          { $inc: { quantity: -1 } }
-        );
-        return res.send(cart);
+
+        await cart.save();
+        // await productModel.findByIdAndUpdate(
+        //   { _id: productID },
+        //   { $inc: { quantity: -1 } }
+        // );
+        return res.status(201).send(cart);
       }
     } else {
       if (!type) {
