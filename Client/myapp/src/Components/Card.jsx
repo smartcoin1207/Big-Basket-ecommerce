@@ -9,7 +9,7 @@ const Card = ({image,title1,title2,title3,title4,offer,price,_id})=>{
     }
 
     return(
-        <Box display={'block'} m={'auto'} alignItems={'center'} textAlign={'left'}
+        <Box data-aos="fade-up" data-aos-duration="1000" display={'block'} m={'auto'} alignItems={'center'} textAlign={'left'}
         fontWeight={'bold'}
         height={"470px"}
         lineHeight={'0.5'}

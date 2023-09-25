@@ -31,8 +31,8 @@ app.get("/", (req, res) => {
   res.send("welcome to big basket");
 });
 
-
 app.listen(8080, async (req, res) => {
+
 
 
   try {
@@ -41,5 +41,6 @@ app.listen(8080, async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-  console.log("server running at port 8080");
+  console.log("server running at port 8080");
 });
+

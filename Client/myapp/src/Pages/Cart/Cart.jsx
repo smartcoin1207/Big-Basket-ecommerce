@@ -40,20 +40,32 @@
 
 // CartPage.js
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CartItem from './CartItem';
 import './style.css';
+import {useSelector,useDispatch} from 'react-redux';
+import { getCartData } from '../../Redux/cartReducer/action';
+import MensProductsCard from '../SingleProduct';
 // import CartItem from './CartItem'; // Create a CartItem component
 
 const Cart = () => {
+  
   const [cartItems, setCartItems] = useState([
     { id: 1, name: 'Product 1', price: 19.99, quantity: 2 },
     { id: 2, name: 'Product 2', price: 24.99, quantity: 1 },
     // Add more items as needed
   ]);
-
+const dispatch = useDispatch();
+  const {data} = useSelector((store)=>{
+    return store.cartReducer
+  });
+useEffect(()=>{
+ dispatch(getCartData())
+},[])
+  console.log(data);
   return (
     <div className="cart-page">
+      <MensProductsCard/>
       <h1>Shopping Cart</h1>
       <div className="cart-items">
         {cartItems.map((item) => (
