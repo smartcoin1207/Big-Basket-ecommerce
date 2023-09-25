@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import {Box, Image, SimpleGrid} from '@chakra-ui/react';
 import axios from 'axios';
 import Card from "../Components/Card";
+import Aos from "aos";
+import "aos/dist/aos.css";
 import Crousel from "../Components/Crousel";
 const Home = ()=>{
 
@@ -14,9 +16,9 @@ const Home = ()=>{
     }
     useEffect(()=>{
         fetchData();
+        Aos.init()
     },[]);
     
-    console.log(data);
     return(
         <Box>
             <Crousel/>

@@ -9,8 +9,8 @@ function Crousel() {
   return (
     <Carousel data-bs-theme="dark">
         {
-            images.map((ele)=>(
-      <Carousel.Item interval={1500}>
+            images.map((ele,i)=>(
+      <Carousel.Item key={i} interval={1500}>
         <img style={{height:"80%",width:"100%"}}
           className="d-block w-100"
           src={ele.img}
