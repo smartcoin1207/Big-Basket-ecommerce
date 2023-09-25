@@ -41,19 +41,18 @@
 // CartPage.js
 
 import React, { useEffect, useState } from 'react';
-import CartItem from './CartItem';
 import './style.css';
 import {useSelector,useDispatch} from 'react-redux';
 import { getCartData } from '../../Redux/cartReducer/action';
-import MensProductsCard from '../SingleProduct';
-// import CartItem from './CartItem'; // Create a CartItem component
+import Shopping from '../Shopping';
+import { Box, Button, Heading } from '@chakra-ui/react';
+import Crousel from '../../Components/Crousel';
 
 const Cart = () => {
   
   const [cartItems, setCartItems] = useState([
     { id: 1, name: 'Product 1', price: 19.99, quantity: 2 },
     { id: 2, name: 'Product 2', price: 24.99, quantity: 1 },
-    // Add more items as needed
   ]);
 const dispatch = useDispatch();
   const {data} = useSelector((store)=>{
@@ -62,21 +61,41 @@ const dispatch = useDispatch();
 useEffect(()=>{
  dispatch(getCartData())
 },[])
-  console.log(data);
   return (
+    <>
     <div className="cart-page">
-      <MensProductsCard/>
-      <h1>Shopping Cart</h1>
-      <div className="cart-items">
-        {cartItems.map((item) => (
-          <CartItem key={item.id} item={item} />
-        ))}
-      </div>
-      <div className="cart-summary">
-        <p>Total: $ {calculateTotal(cartItems)}</p>
-        <button>Checkout</button>
-      </div>
+
+        <Box marginBottom={"30px"}>
+          <Crousel/>
+        </Box>
+    <Heading textAlign={"left"}>Shooping Cart</Heading>
+      {
+        data.cart&&data.cart.map((ele)=>{
+          return(
+            <Shopping/>
+            )
+          })
+        }
     </div>
+    <Box
+          alignItem={"right"}
+          justifyContent={"right"}
+          width={"40%"}
+          margin={"auto"}
+          bgColor={"green"}
+          borderRadius={"20px"}
+          marginTop={"30px"}
+        >
+          <Button
+            padding={"20px"}
+            bgColor={"green"}
+            width={"100%"}
+            borderRadius={"20px"}
+          >
+            Proceed to pay
+          </Button>
+        </Box>
+  </>
   );
 };
 

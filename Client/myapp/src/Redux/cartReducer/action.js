@@ -12,15 +12,12 @@ import {
 export const getCartData = () => async (dispatch) => {
   dispatch({ type: REQUEST_CART_ITEM });
   try {
-    let res = await axios.get(`http://localhost:4000/product`);
-    // console.log("data", res.data);
-    dispatch({ type: GET_CART_ITEM, payload: res.data });
+    let res = await axios.get(`http://localhost:8080/cart/`);
+    dispatch({ type: GET_CART_ITEM, payload: res.data});
   } catch (error) {
     dispatch({ type: ERROR_CART_ITEM });
   }
 };
-
-
 
 // export const deleteCartData = (id) => (dispatch) => {
 //   dispatch({ type: DELETE_REQUEST_CART_ITEM });
@@ -36,20 +33,17 @@ export const getCartData = () => async (dispatch) => {
 
 
 
-
-// export const AddToCart = (item) => (dispatch) => {
-//   return fetch(`https://vast-duck-coat.cyclic.app/cart/${item._id}`, {
-//     method: "POST",
-//     headers: {
-//       Authorization: `Bearer ${localStorage.getItem("token") || ""}`,
-//     },
-//   })
-//     .then((res) => res.json())
-//     .then((res) => {
-//       dispatch({ type: ADD_TO_CART, payload: item });
-//       return res;
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// };
+export const AddToCart = (item) => (dispatch) => {
+  return fetch(`http://localhost:8080/cart/${item._id}`, {
+    method: "POST",
+    body:JSON.stringify(item)
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      dispatch({ type: ADD_TO_CART, payload: item });
+      return res;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

@@ -19,11 +19,7 @@ import { Link } from "react-router-dom";
 const Shopping = () => {
   return (
     <>
-    <Box marginBottom={"30px"}>
-        <Crousel/>
-    </Box>
       <Box width={"90%"} margin="auto">
-        <Heading textAlign={"left"}>Shooping Cart</Heading>
 
         <TableContainer>
           <Table
@@ -60,26 +56,6 @@ const Shopping = () => {
             </Tfoot>
           </Table>
         </TableContainer>
-        <Link to="/checkout">
-        <Box
-          alignItem={"right"}
-          justifyContent={"right"}
-          width={"40%"}
-          margin={"auto"}
-          bgColor={"green"}
-          borderRadius={"20px"}
-          marginTop={"30px"}
-        >
-          <Button
-            padding={"20px"}
-            bgColor={"green"}
-            width={"100%"}
-            borderRadius={"20px"}
-          >
-            Proceed to pay
-          </Button>
-        </Box>
-        </Link>
       </Box>
     </>
   );

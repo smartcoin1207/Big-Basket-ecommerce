@@ -1,11 +1,15 @@
 import { Box, Button, Image, Text } from "@chakra-ui/react";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Card = ({image,title1,title2,title3,title4,offer,price,_id})=>{
     const navigate = useNavigate();
+    
     const addCart = ()=>{
-        navigate(`/cart/${_id}`);
+        navigate(`/product/${_id}`);
+
     }
 
     return(
@@ -17,9 +21,12 @@ const Card = ({image,title1,title2,title3,title4,offer,price,_id})=>{
         padding={"20px"}
         bgColor={'rgb(245, 243, 243)'}
         borderRadius={"20px"}
-        boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
-        // _hover={
-        // }
+        _hover={
+            {
+                boxShadow:"rgba(0, 0, 0, 0.24) 0px 3px 8px"
+
+            }
+        }
         >
             <Image w={'100%'} h={'50%'} mb={'9%'}  src={image}/>
             <Text>{title1}</Text>
@@ -28,7 +35,7 @@ const Card = ({image,title1,title2,title3,title4,offer,price,_id})=>{
             <Text>{title4}</Text>
             <Text>{offer}</Text>
             <Text>Price: <span style={{color:'red'}}>{price}</span> </Text>
-            <Button bgColor={'#4a84d5'} onClick={()=>addCart()} w={'100%'} textAlign={'center'}>ORDER NOW</Button>
+            <Button _hover={{bgColor:'#4a84d5'}} bgColor={'#90b7ee'} onClick={()=>addCart()} w={'100%'} textAlign={'center'}>ORDER NOW</Button>
         </Box>
     )
 }
