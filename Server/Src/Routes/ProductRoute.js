@@ -1,6 +1,7 @@
 const express = require("express");
 const { productModel } = require("../Models/ProductModel");
 const app = express.Router();
+const cloudinary = require("cloudinary");
 
 app.get("/", async (req, res) => {
   try {

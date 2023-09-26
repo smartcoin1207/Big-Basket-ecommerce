@@ -32,7 +32,9 @@ app.post("/:id", async (req, res) => {
   const productID = req.params.id;
   try {
     let product = await productModel.findById({ _id: productID });
-    console.log(product)
+
+    console.log(product);
+
     let cartItem = await CartModel.findOne({
       user: req._id,
       product: productID,
@@ -57,12 +59,18 @@ app.post("/:id", async (req, res) => {
           rating: product.rating,
         });
 
-        await cart.save()
+
+        await cart.save();
+
         // await productModel.findByIdAndUpdate(
         //   { _id: productID },
         //   { $inc: { quantity: -1 } }
         // );
+
         return res.status(201).send(cart );
+
+        return res.status(201).send(cart);
+
       }
     } else {
       if (!type) {
