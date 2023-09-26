@@ -170,6 +170,9 @@ const Checkout = () => {
               />
             </FormControl>
 
+           
+
+
             {/* paymentn detais  */}
 
             {/* <Box marginTop={"50px"}>

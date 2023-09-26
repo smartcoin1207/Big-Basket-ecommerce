@@ -12,51 +12,23 @@ import {
   Box,
   Heading,
   Button,
+  Image,
 } from "@chakra-ui/react";
 import Crousel from "../Components/Crousel";
 import { Link } from "react-router-dom";
 
-const Shopping = () => {
+const Shopping = ({price,offer,image,title1,title2,title3,quantity}) => {
   return (
     <>
-      <Box width={"90%"} margin="auto">
-
-        <TableContainer>
-          <Table
-            bgColor={'rgb(250, 247, 247)'}
-            padding={"20px"}
-            border={"1px solid grey"}
-            height={"auto"}
-            marginTop={"20px"}
-          >
-            {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
-            <Thead border={"1px solid black"}>
-              <Tr border={"1px solid black"}>
-                <Th>Product</Th>
-                <Th>Basic Price</Th>
-                <Th> Quanity</Th>
-                <Th>Total Price</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              <Tr>
-                <Td>Total Product offer: ! kg Daal 1 kg ghee 1 kg kaaju</Td>
-                <Td>356</Td>
-                <Td>2</Td>
-                <Td>785</Td>
-              </Tr>
-             
-            </Tbody>
-            <Tfoot>
-              <Tr>
-                {/* <Th>To convert</Th>
-                <Th>into</Th>
-                <Th isNumeric>multiply by</Th> */}
-              </Tr>
-            </Tfoot>
-          </Table>
-        </TableContainer>
-      </Box>
+      
+              <Tr border={'2px solid black'} mb={'10px'}>
+                <Td><Image h={'25%'} w={'25%'} src={image}/></Td>
+                <Td> {`${title1} || ${title2} `} </Td>
+                <Td>{price}</Td>
+                <Td>{quantity?quantity:1}</Td>
+                <Td>{quantity?quantity*price:price}</Td>
+              </Tr>      
+            
     </>
   );
 };
