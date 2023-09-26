@@ -12,7 +12,7 @@ const Home = ()=>{
 
     const [data,setData] = useState([]);
     const [load,setLoad] = useState(false);
-    const data1 = useSelector((store)=>console.log('store',store));
+    // const data1 = useSelector((store)=>);
     const dispatch = useDispatch();
     const fetchData = async ()=>{
         setLoad(true);

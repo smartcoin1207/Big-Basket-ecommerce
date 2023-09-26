@@ -1,74 +1,46 @@
-// import { Box } from "@chakra-ui/react";
-// import axios from "axios";
-// import React, { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
-
-
-// const Cart = ()=>{
-//     const params = useParams();
-//     console.log(params.id);
-//     const [data,setData] = useState([]);
-//     const fetchData = ()=>{
-//         return(
-//             axios.get(`http://localhost:4000/product/${params.id}`)
-//             .then((data)=>setData(data.data)).catch(err=>console.log(err))
-//         )
-//     }
-// useEffect(()=>{
-//     fetchData();
-// },[]);
-//     console.log('data',data);
-//     return(
-//         <Box>
-//             Cart
-//             {/* {
-//                 data&&data.map((ele)=>{
-//                     return(
-//                         <Box>
-
-//                         </Box>
-//                     )
-//                 })
-//             } */}
-//         </Box>
-//     )
-// }
-
-// export default Cart;
-
-
-
 // CartPage.js
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './style.css';
 import {useSelector,useDispatch} from 'react-redux';
 import { getCartData } from '../../Redux/cartReducer/action';
 import Shopping from '../Shopping';
 import { Box, Button, Heading } from '@chakra-ui/react';
 import Crousel from '../../Components/Crousel';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
-  
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: 'Product 1', price: 19.99, quantity: 2 },
-    { id: 2, name: 'Product 2', price: 24.99, quantity: 1 },
-  ]);
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {data} = useSelector((store)=>{
     return store.cartReducer
   });
-useEffect(()=>{
- dispatch(getCartData())
-},[])
+  // const inputFile = useRef(null);
+  // const openFile = ()=>{
+  //   inputFile.current.click();
+  // }
+  // console.log(data.cart);
+
+  let length = data.cart?.length;
+  let totalCost=data.cart?.map((ele)=>(ele.price)).reduce((acc,i)=>acc+i,0);
+
+  
+  useEffect(()=>{
+    dispatch(getCartData())
+  },[])
   return (
     <>
+    {/* <div>
+      <input type="file" id="file" ref={inputFile} style={{display:'none'}} />
+      <button onClick={()=>openFile()} style={{color:'black'}}>OPen file</button>
+    </div> */}
+
     <div className="cart-page">
 
         <Box marginBottom={"30px"}>
           <Crousel/>
         </Box>
-    <Heading textAlign={"left"}>Shooping Cart</Heading>
+      <Heading textAlign={"left"}>Shopping Cart <span style={{color:'red'}}>{` (${length} Items)`}</span> </Heading>
       {
         data.cart&&data.cart.map((ele)=>{
           return(
@@ -77,6 +49,7 @@ useEffect(()=>{
           })
         }
     </div>
+    <Heading textAlign={'right'} mr={'10%'} size={'lg'}>Total Price = {totalCost}</Heading>
     <Box
           alignItem={"right"}
           justifyContent={"right"}
@@ -91,6 +64,10 @@ useEffect(()=>{
             bgColor={"green"}
             width={"100%"}
             borderRadius={"20px"}
+            onClick={()=>{
+              navigate('/checkout')
+              localStorage.setItem('total',totalCost);
+            }}
           >
             Proceed to pay
           </Button>
@@ -99,8 +76,5 @@ useEffect(()=>{
   );
 };
 
-const calculateTotal = (cartItems) => {
-  return cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
-};
 
 export default Cart;
