@@ -8,8 +8,10 @@ import {
   Button,
   Text,
   Select,
+  Span,
   Option,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -138,7 +140,9 @@ const SignUp = () => {
           <Button mt="5" mb="5" colorScheme="blue" type="submit">
             Register
           </Button>
-          <Text>If Already register please Login ?</Text>
+          <Link to ="/admin/login">
+          <Text>If Already register please  <span color="blue"> Login</span>  ?</Text>
+          </Link>
         </form>
 
         {message && <p>{message}</p>}
