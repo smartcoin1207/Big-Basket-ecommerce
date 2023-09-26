@@ -23,10 +23,10 @@ const Shopping = () => {
 
         <TableContainer>
           <Table
+            bgColor={'rgb(250, 247, 247)'}
             padding={"20px"}
             border={"1px solid grey"}
             height={"auto"}
-            borderRadius={"20px"}
             marginTop={"20px"}
           >
             {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}

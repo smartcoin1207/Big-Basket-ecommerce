@@ -4,35 +4,22 @@ import {
     Grid,
     Skeleton,
     SkeletonCircle,
-    SkeletonText,
+    SkeletonText, SimpleGrid
   } from "@chakra-ui/react";
   import React from "react";
   
   const Loading = () => {
     return (
-      <Flex w={'100%'} m={'auto'}>
-        {/* <Box w={"20%"} padding="6" boxShadow="lg" bg="white">
-          <SkeletonCircle size="10" />
-  
-          <Skeleton height="50px" mb={"10px"} margin="auto" />
-  
-          <Skeleton height="20px" mb={"10px"} />
-          <Skeleton height="50px" mb={"10px"} margin="auto" />
-  
-          <Skeleton height="20px" mt={"50px"} mb={"10px"} />
-          <Skeleton height="20px" mt={"50px "} mb={"10px"} />
-          <Skeleton height="20px" mt={"50px"} mb={"10px"} />
-          <Skeleton height="20px" mt={"50px "} mb={"10px"} />
-          <Skeleton height="20px" mb={"10px"} />
-          <Skeleton height="20px" mb={"10px"} />
-        </Box> */}
-
-        <Grid
+      <>
+      <Box boxShadow="lg" bg="white" h={'50%'} mb={'20px'} width={'100%'} m={'auto'}>
+        <Skeleton h={'300px'} mb={'20px'} />
+      </Box>
+      <Flex w={'90%'} display={'block'} m={'auto'}>
+        <SimpleGrid columns={[1.1,2,3]}
           mt={"30px"}
           marginLeft={"40px"}
           paddingLeft={"15px"}
           width={"80%"}
-          templateColumns="repeat(3, 1fr)"
           gap={6}
           >
           <Box height={"auto"}>
@@ -99,8 +86,9 @@ import {
             <Skeleton height="50px" w={"50%"} mb={"10px"} margin="auto" />
             <Skeleton height="20px" mt={"10px"} mb={"10px"} />
           </Box>
-        </Grid>
+        </SimpleGrid>
       </Flex>
+            </>
     );
   };
   

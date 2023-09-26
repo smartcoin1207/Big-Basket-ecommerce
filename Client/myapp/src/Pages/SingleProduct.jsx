@@ -174,8 +174,8 @@ export default function SingleProduct() {
 useEffect(()=>{
     fetchData()
 },[]);
-const {image,offer,price,title1,title2,title3,title4} = data;
-
+const {image,offer,price,title1,title2,title3,title4,rating=3.5} = data;
+console.log(data);
 const addToCartFun = () => {
     dispatch(AddToCart(data))
       .then((res) => {
@@ -230,7 +230,7 @@ return ( load ? <SngleProductSkeleton/> :
                 <Text fontWeight={300} fontSize={"2xl"}>
                   ₹{price}
                 </Text>{" "}
-                {/* <Flex gap={1}>
+                <Flex gap={1}>
                   {rating &&
                     Array(5)
                       .fill("")
@@ -261,7 +261,7 @@ return ( load ? <SngleProductSkeleton/> :
                           );
                         }
                       })}
-                </Flex> */}
+                </Flex>
               </Box>
 
               <Stack
@@ -286,7 +286,7 @@ return ( load ? <SngleProductSkeleton/> :
                   <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
                     <Flex gap={"2"}>
                       <Badge p="0.2rem">{`Offer ${offer}`}</Badge>
-                      <Badge p="0.2rem">{`Discount ${'20%'}`}</Badge>
+                      <Badge p="0.2rem">{`Discount ${''}`}</Badge>
                       {/* {tags?.map((el) => {
                         return (
                           <Badge p="0.2rem" colorScheme="green">
