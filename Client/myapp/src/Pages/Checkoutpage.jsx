@@ -25,6 +25,10 @@ const Checkout = () => {
     city: "",
     state: "",
     pincode: "",
+    cardnumber: "",
+    month: "",
+    year: "",
+    cvv: "",
     to_name: "",
 
     // message: "",
@@ -67,15 +71,15 @@ const Checkout = () => {
 
   return (
     <Box>
-        <Box marginBottom={"40px"}>
-        <Crousel/>
-        </Box>
+      <Box marginBottom={"40px"}>
+        <Crousel />
+      </Box>
       <form
         onSubmit={handleSubmit}
         style={{
           width: "80%",
           margin: "auto",
-        
+
           // textalign: "left",
           // bgGradient="linear(to-t, green.200, pink.500)"
           boxShadow:
@@ -170,20 +174,18 @@ const Checkout = () => {
               />
             </FormControl>
 
-           
-
-
             {/* paymentn detais  */}
 
-            {/* <Box marginTop={"50px"}>
+            <Box marginTop={"50px"} textAlign={"left"}>
               <Heading>Payment Options</Heading>
               <Box fontWeight={"medium"}>
                 <Checkbox defaultChecked>Credit Card</Checkbox> <br />
                 <Checkbox>Debit Card</Checkbox> <br />
-                <Checkbox> Cash on Delivery</Checkbox>
+                <Checkbox disabled> Cash on Delivery</Checkbox>
               </Box>
               <Box border={"2px solid grey"} marginTop="30px" padding="10px">
-                <Flex
+                <SimpleGrid
+                  columns={[1, 1, 2, 2]}
                   style={{
                     justifyContent: "space-between",
                     padding: "10px",
@@ -199,7 +201,7 @@ const Checkout = () => {
                   >
                     <Checkbox>Remember me</Checkbox>
                   </Text>
-                </Flex>
+                </SimpleGrid>
 
                 <Box padding="10px">
                   <Text fontWeight="bold">CARD NUMBER</Text>
@@ -207,28 +209,45 @@ const Checkout = () => {
                     type="text"
                     placeholder="Valid Card NUmber"
                     border="1px solid black"
+                    name="cardnumber"
+                    value={formData.cardnumber}
+                    onChange={handleChange}
                   ></Input>
 
-                
                   <Box marginTop="10px">
                     <Flex gap="30px">
                       <Box fontWeight="bold">
                         EXPIRY DATE
-                        <Flex gap="20px">
-                          <Input placeholder="Month"></Input>
-                          <Input placeholder="year "></Input>
-                        </Flex>
+                        <SimpleGrid columns={[1, 1, 1, 2]} gap="20px">
+                          <Input
+                            placeholder="Month"
+                            name="month"
+                            value={formData.month}
+                            onChange={handleChange}
+                          ></Input>
+                          <Input
+                            placeholder="year"
+                            name="year"
+                            value={formData.year}
+                            onChange={handleChange}
+                          ></Input>
+                        </SimpleGrid>
                       </Box>
                       <Box fontWeight="bold">
                         {" "}
                         CVV
-                        <Input placeholder="CVV"></Input>
+                        <Input
+                          placeholder="CVV"
+                          name="cvv"
+                          value={formData.cvv}
+                          onChange={handleChange}
+                        ></Input>
                       </Box>
                     </Flex>
                   </Box>
                 </Box>
               </Box>
-            </Box> */}
+            </Box>
           </Box>
 
           {/* image for shopping cart */}
