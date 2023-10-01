@@ -16,6 +16,7 @@ const Cart = () => {
   });
   let length = data.cart?.length;
   let totalCost=data.cart?.map((ele)=>(ele.price*(ele.quantity?ele.quantity:1))).reduce((acc,i)=>acc+i,0);
+  console.log(data);
   useEffect(()=>{
     dispatch(getCartData())
   },[])

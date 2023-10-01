@@ -22,6 +22,7 @@ import { deleteCartData } from "../Redux/cartReducer/action";
 const Shopping = ({_id,price,offer,image,title1,title2,title3,quantity}) => {
   const dispatch = useDispatch();
   const toast = useToast();
+  console.log(image);
   return (
     <>
               <Tr border={'2px solid black'} mb={'10px'}>
