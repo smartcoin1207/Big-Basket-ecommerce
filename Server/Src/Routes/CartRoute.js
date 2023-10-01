@@ -59,7 +59,6 @@ app.post("/:id", async (req, res) => {
           rating: product.rating,
         });
 
-
         await cart.save();
 
         // await productModel.findByIdAndUpdate(
@@ -67,10 +66,9 @@ app.post("/:id", async (req, res) => {
         //   { $inc: { quantity: -1 } }
         // );
 
-        return res.status(201).send(cart );
-
         return res.status(201).send(cart);
 
+        // return res.status(201).send(cart);
       }
     } else {
       if (!type) {
@@ -146,4 +144,4 @@ app.delete("/:id", async (req, res) => {
   }
 });
 
-module.exports = app;
+module.exports = app;

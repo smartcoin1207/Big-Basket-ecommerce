@@ -8,26 +8,6 @@ import MensProductsCard from "../Pages/SingleProduct";
 import Dashboard from "../Pages/AdminPanel/Dashboard/Dashboard";
 import SignUp from "../Pages/AdminPanel/LoginSignUp/SignUp";
 import LoginForm from "../Pages/AdminPanel/LoginSignUp/Login";
-const AllRoutes  =()=>{
-    return(
-        <div>
-            <Routes>
-                <Route path="/" element={<Home/>}></Route>
-                <Route path="/cart" element={<Cart/>}></Route>
-                <Route path="/product/:id" element={<MensProductsCard/>}></Route>
-                <Route path="/shopping" element={<Shopping/>}> </Route>
-                <Route path="/checkout" element={<Checkout/>}></Route>
-                <Route path="/dashboard" element={<Dashboard/>}></Route>
-                <Route path="/admin/signup" element={<SignUp/>}></Route>
-                <Route path="/admin/login" element={<LoginForm/>}></Route>
-            </Routes>
-        </div>
-    )
-}
-import SignUp from "../Pages/AdminPanel/LoginSignup/SignUp";
-import LoginForm from "../Pages/AdminPanel/LoginSignup/Login";
-
-
 const AllRoutes = () => {
   return (
     <div>
@@ -39,11 +19,11 @@ const AllRoutes = () => {
           {" "}
         </Route>
         <Route path="/checkout" element={<Checkout />}></Route>
+        <Route path="/dashboard" element={<Dashboard />}></Route>
         <Route path="/admin/signup" element={<SignUp />}></Route>
         <Route path="/admin/login" element={<LoginForm />}></Route>
       </Routes>
     </div>
   );
 };
-
 export default AllRoutes;

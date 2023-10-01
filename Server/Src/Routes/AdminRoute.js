@@ -6,7 +6,7 @@ const app = express.Router();
 require("dotenv").config();
 
 // register admin
-app.post("/", async (req, res) => {
+app.post("/register", async (req, res) => {
   // Destructure user data from the request body
   const { name, email, password, phoneNumber, gender } = req.body;
 
