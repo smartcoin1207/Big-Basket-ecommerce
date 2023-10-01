@@ -13,7 +13,7 @@ app.get("/", async (req, res) => {
 });
 
 // product for admin
-app.get("/allprodAdmin", async (req, res) => {
+app.get("/allproductadmin", async (req, res) => {
   try {
     let product = await productModel.find();
     res.status(200).send(product);
@@ -32,6 +32,8 @@ app.get("/:id", async (req, res) => {
     return res.status(400).send(error.message);
   }
 });
+
+// all admin products
 
 // post request
 app.post("/", async (req, res) => {
