@@ -34,7 +34,7 @@ const Home = ()=>{
     return( load?<Loading/> :
         <Box>
             <Crousel/>
-                 <Box  width={"90%"} m={"auto"} >
+                 <Box width={"90%"} m={"auto"} >
                 <SimpleGrid columns={[1.1,2,3]}>
                 {
                     data&&data.map((ele)=>(

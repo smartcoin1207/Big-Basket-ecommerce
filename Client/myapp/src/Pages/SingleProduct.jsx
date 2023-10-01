@@ -174,7 +174,7 @@ export default function SingleProduct() {
 useEffect(()=>{
     fetchData()
 },[]);
-const {image,offer,price,title1,title2,title3,title4,rating=3.5} = data;
+const {image,offer,price,title1,title2,title3,rating} = data;
 console.log(data);
 const addToCartFun = () => {
     dispatch(AddToCart(data))
@@ -225,7 +225,7 @@ return ( load ? <SngleProductSkeleton/> :
                   fontWeight={600}
                   fontSize={{ base: "1xl", sm: "2xl", lg: "3xl" }}
                 >
-                  {`${title1} || ${title2} || ${title3} || ${title4} `}
+                  {`${title1} || ${title2} || ${title3} `}
                 </Heading>
                 <Text fontWeight={300} fontSize={"2xl"}>
                   ₹{price}

@@ -39,7 +39,7 @@ const SocialButton = ({
 
 export default function Footer() {
   return (
-    <>
+    <footer>
     <hr style={{height:'5px'}}  />
     <Box
     bg={'darkgrey'}
@@ -94,6 +94,6 @@ export default function Footer() {
         </Container>
       </Box>
     </Box>
-              </>
+              </footer>
   )
 }
