@@ -33,7 +33,7 @@ function NavLink() {
                 <Box justifyContent={'space-between'}>
                   <Link style={{padding:'15px'}} to="/">HOME</Link>
                   <Link style={{padding:'15px'}} to="/cart">ORDER NOW</Link>
-                  <Link style={{padding:'15px'}}  to ="/admin/signup"> Admin</Link>
+                  <Link style={{padding:'15px'}}  to ="/admin/signup"> ADMIN</Link>
                 </Box>
                   
                 </Nav>

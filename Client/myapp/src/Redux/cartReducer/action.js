@@ -19,17 +19,14 @@ export const getCartData = () => async (dispatch) => {
   }
 };
 
-// export const deleteCartData = (id) => (dispatch) => {
-//   dispatch({ type: DELETE_REQUEST_CART_ITEM });
-//   axios
-//     .delete(`https://vast-duck-coat.cyclic.app/cart/${id}`, {
-//       headers: {
-//         Authorization: `Bearer ${localStorage.getItem("token") || ""}`,
-//       },
-//     })
-//     .then(() => dispatch({ type: DELETE_GET_CART_ITEM, payload: id }))
-//     .catch(() => dispatch({ type: DELETE_ERROR_CART_ITEM }));
-// };
+export const deleteCartData = (id) => (dispatch) => {
+  dispatch({ type: DELETE_REQUEST_CART_ITEM });
+  axios
+    .delete(`http://localhost:8080/cart/${id}`)
+    .then(() => dispatch({ type: DELETE_GET_CART_ITEM, payload: id }))
+    .catch(() => dispatch({ type: DELETE_ERROR_CART_ITEM }));
+    window.location.reload();
+};
 
 
 

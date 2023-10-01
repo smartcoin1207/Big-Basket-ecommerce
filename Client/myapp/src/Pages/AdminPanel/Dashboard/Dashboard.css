@@ -1,0 +1,49 @@
+.formInput{
+    padding: 5px;
+    border: 1px solid gray;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    
+    }
+    .admitPortalForm{
+        margin-top: 15px;
+        width: 40%;
+        margin: auto;
+    }
+    
+    .AdminProdcutCard{
+        margin: auto;
+      width: 98%;
+      display: grid;
+      
+    }
+    .blurrd{
+        -webkit-filter: blur(5px);
+        -moz-filter: blur(5px);
+        -o-filter: blur(5px);
+        -ms-filter: blur(5px);
+        filter: blur(5px);
+    }
+    .AdminProdcutCard img{
+    width: 60%;
+    height: 40px;
+    
+        /* grid-template-columns: repeat(4,1fr); */
+    }
+    .TableContainer{
+        width: 98%;
+        margin: auto;
+       
+    }
+   .blurr{
+    /* backdrop-filter: blur(8px); */
+    --chakra-backdrop-blur: blur(6px);
+    /* border: 5px solid red; */
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    border-radius: 12px;
+   }
+   .blurr input {
+    background-color: #fff;
+    border: 1px solid black;
+   }
+   

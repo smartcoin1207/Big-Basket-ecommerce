@@ -13,18 +13,17 @@ const Card = ({image,title1,title2,title3,title4,offer,price,_id})=>{
     }
 
     return(
-        <Box data-aos="fade-up" data-aos-duration="1000" display={'block'} m={'auto'} alignItems={'center'} textAlign={'left'}
+        <Box data-aos="fade-up" data-aos-duration="1000"  display={'block'} m={'auto'} alignItems={'center'} textAlign={'left'}
         fontWeight={'bold'}
-        height={"470px"}
-        lineHeight={'0.5'}
+        height={'-webkit-fit-content'} 
+        lineHeight={'1'}
         margin={"20px"}
         padding={"20px"}
         bgColor={'rgb(245, 243, 243)'}
         borderRadius={"20px"}
         _hover={
             {
-                boxShadow:"rgba(0, 0, 0, 0.24) 0px 3px 8px"
-
+                boxShadow:"rgba(0, 0, 0, 0.24) 0px 3px 8px",
             }
         }
         >
@@ -33,8 +32,8 @@ const Card = ({image,title1,title2,title3,title4,offer,price,_id})=>{
             <Text>{title2}</Text>
             <Text>{title3}</Text>
             <Text>{title4}</Text>
-            <Text>{offer}</Text>
-            <Text>Price: <span style={{color:'red'}}>{price}</span> </Text>
+            <Text color={'yellow.500'}>{offer}</Text>
+            <Text>Price: <span style={{color:'red'}}>₹{price}</span> </Text>
             <Button _hover={{bgColor:'#4a84d5'}} bgColor={'#90b7ee'} onClick={()=>addCart()} w={'100%'} textAlign={'center'}>ORDER NOW</Button>
         </Box>
     )
