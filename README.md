@@ -4,6 +4,19 @@
 * Features
 * Admin Features
 * ScreenShot
-* Demo
 * Tech-Stack
 * Status
+
+
+# About The Project
+This Project is a Full Satck application focus on E-commerce For food products. User Can buy diffrent types of products .Only Admin Can Add,delete,Updateand post The new Product in the project.
+
+# Features
+* Single Product Page
+* Add To cart
+* Checkout Page
+  
+  # Admin  Features
+  * Add New Products
+  * Update New Products
+  * Delete New Products
