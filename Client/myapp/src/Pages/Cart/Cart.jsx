@@ -16,6 +16,7 @@ const Cart = () => {
   });
   let length = data.cart?.length;
   let totalCost=data.cart?.map((ele)=>(ele.price*(ele.quantity?ele.quantity:1))).reduce((acc,i)=>acc+i,0);
+  console.log(data);
   useEffect(()=>{
     dispatch(getCartData())
   },[])
@@ -59,7 +60,7 @@ const Cart = () => {
         </TableContainer>
       </Box>
     </div>
-    <Heading textAlign={'right'} mr={'10%'} size={'lg'}>Total Price = {totalCost}</Heading>
+    <Heading textAlign={'right'} mr={'10%'} fontStyle={'italic'} size={'lg'}>Total Price = ₹{totalCost}</Heading>
     <Box
       alignItem={"right"}
       justifyContent={"right"}

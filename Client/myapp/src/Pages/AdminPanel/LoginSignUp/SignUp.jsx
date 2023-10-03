@@ -10,10 +10,12 @@ import {
   Select,
   Span,
   Option,
+  useToast,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
+  const toast = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -33,7 +35,7 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8080/admin", {
+      const response = await fetch("http://localhost:8080/admin/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,8 +54,26 @@ const SignUp = () => {
           phoneNumber: "",
           gender: "",
         });
+        toast({
+          size: "500",
+          position: "top-center",
+          title: "Done.",
+          description: "You are signedUp successfully!.",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+  });
       } else {
         setMessage(data.message);
+        toast({
+          size: "500",
+          position: "top-center",
+          title: "Done.",
+          description: "Error while signing In!.",
+          status: "warning",
+          duration: 4000,
+          isClosable: true,
+  });
       }
     } catch (error) {
       console.error(error);

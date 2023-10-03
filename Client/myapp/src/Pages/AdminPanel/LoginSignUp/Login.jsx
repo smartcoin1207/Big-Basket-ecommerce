@@ -9,9 +9,13 @@ import {
   InputRightElement,
   InputGroup,
   Heading,
+  useToast,
+  Text,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { Link } from "react-router-dom";
 const LoginForm = () => {
+  const toast = useToast();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -43,15 +47,33 @@ const LoginForm = () => {
       if (response.ok) {
         // Login successful, store the JWT token in localStorage or a state variable
         localStorage.setItem("token", data.token);
-        console.log(data);
-
         setMessage(data.message);
+        console.log(data);
+        toast({
+          size: "500",
+          position: "top-center",
+          title: "Done.",
+          description: "Login Successfull!.",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+  });
+
       } else {
         setMessage(data.message);
+        toast({
+          size: "500",
+          position: "top-center",
+          title: "Done.",
+          description: "Error while logging In!.",
+          status: "warning",
+          duration: 4000,
+          isClosable: true,
+        });
       }
     } catch (error) {
-      console.error(error);
       setMessage("An error occurred.");
+      console.error(error);
     }
   };
 
@@ -110,6 +132,9 @@ const LoginForm = () => {
       </form>
 
       {message && <p>{message}</p>}
+      <Link to={'/admin/signup'}>
+        <Text textAlign={'left'} mt={'5'} color={'blue.400'}>Don't have an account? Sign Up</Text>
+      </Link>
     </Box>
   );
 };
