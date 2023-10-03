@@ -24,10 +24,10 @@ const Shopping = ({_id,price,image,title1,title2,quantity}) => {
           status: "success",
           duration: 4000,
           isClosable: true,
-  });
-  setTimeout(() => {
-    window.location.reload();
-  }, 1000);
+      });
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
   }
 
   return (
@@ -40,8 +40,7 @@ const Shopping = ({_id,price,image,title1,title2,quantity}) => {
                 <Td>₹{quantity?quantity*price:price}</Td>
                 <Td><Button onClick={()=>{deleteCartProduct()}} 
                   bgColor={'red'}><DeleteIcon/></Button></Td>
-              </Tr>      
-            
+              </Tr>         
     </>
   );
 };

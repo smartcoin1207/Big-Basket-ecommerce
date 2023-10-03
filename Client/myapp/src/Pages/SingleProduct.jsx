@@ -1,126 +1,3 @@
-// import {
-//     Flex,
-//     Box,
-//     Image,
-//     Badge,
-//     useColorModeValue,
-//     Text,
-//   } from "@chakra-ui/react";
-  
-//   import { Link } from "react-router-dom";
-  
-//   function MensProductsCard() {
-//     // let offerPresent = parseInt(offer);
-//     // let discountMoney = (price * offerPresent) / 100;
-//     // let finalPrice = price + discountMoney;
-  
-//     return (
-//       <Flex p={5} w="sm" alignItems="center" justifyContent="center">
-//         <Box
-//           bg={useColorModeValue("white", "gray.800")}
-//           w="98%"
-//           borderWidth="1px"
-//           borderTop={"0px"}
-//           rounded="md"
-//           shadow="md"
-//         >
-//           {/* <Link to={`/product/${_id}/details`}> */}
-//             <Image
-//               src={'https://bigbasket.website/createives/4k.png'}
-//               w={"sm"}
-//               alt={`Picture of ${'Chaawal'}`}
-//               roundedTop="lg"
-//             />
-//             <Badge colorScheme="gray" mt={-20} mr={"100%"}>
-//               {4}⭐
-//             </Badge>
-//             <Box p="3">
-//               <Box alignItems="baseline" mt={-25}>
-//                 <Badge
-//                   rounded="full"
-//                   fontSize="0.8em"
-//                   colorScheme="yellow"
-//                   mr={"100%"}
-//                   variant={"solid"}
-//                   color={"black"}
-//                 >
-//                   {/* {brand} */} Basmati
-//                 </Badge>
-//               </Box>
-//               <Flex mt="1" justifyContent="space-between" alignContent="center">
-//                 <Box
-//                   fontSize="lg"
-//                   fontWeight="semibold"
-//                   as="h4"
-//                   lineHeight="tight"
-//                   isTruncated
-//                 >
-//                   {/* {name} */} Rice
-//                 </Box>
-//               </Flex>
-//               <Box
-//                 fontSize={"11px"}
-//                 textAlign={"left"}
-//                 fontWeight={"bold"}
-//                 color={"gray.500"}
-//               >
-//                 {/* <Text>{description.slice(0, 50)}</Text> */}
-//                 <Text>This is a nice product</Text>
-//               </Box>
-//               <Flex justifyContent="space-between" alignContent="center">
-//                 <Box fontSize="xl" color={useColorModeValue("gray.800", "white")}>
-//                   <Box as="span" fontSize="xl" color={"gray.600"}>
-//                     ₹
-//                   </Box>
-//                   {/* {`${price.toFixed(2)}`} */}
-//                   100
-//                   <Badge
-//                     ml="2"
-//                     fontSize={"md"}
-//                     colorScheme="red"
-//                     mb={2}
-//                     textDecoration={"line-through"}
-//                   >
-//                     {/* ₹ {Math.floor(finalPrice)} */}200
-//                   </Badge>
-//                   <Badge ml="3" fontSize={"md"} mb={2}>
-//                     {/* {offer} */}
-//                     50%
-//                   </Badge>
-//                 </Box>
-//               </Flex>
-//             </Box>
-//           {/* </Link> */}
-//         </Box>
-//       </Flex>
-//     );
-//   }
-  
-//   export default MensProductsCard;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -180,13 +57,12 @@ const addToCartFun = () => {
     dispatch(AddToCart(data))
       .then((res) => {
           return toast({
-            title: 'Added to your cart',
-            status: "success",
-            duration: 2000,
-            position: "top",
-            isClosable: true,
-          });
-        
+              title: 'Added to your cart',
+              status: "success",
+              duration: 2000,
+              position: "top",
+              isClosable: true,
+            }); 
       })
       .catch((err) => {
         return toast({
@@ -269,9 +145,6 @@ return ( load ? <SngleProductSkeleton/> :
                 direction={"column"}
                 divider={<StackDivider borderColor={"gray.200"} />}
               >
-                {/* <VStack spacing={{ base: 4, sm: 6 }}>
-                  <Text fontSize={"lg"}>{'Description'}</Text>
-                </VStack>{" "} */}
                 <Box>
                   <Text
                     fontSize={{ base: "16px", lg: "18px" }}
@@ -287,55 +160,9 @@ return ( load ? <SngleProductSkeleton/> :
                     <Flex gap={"2"}>
                       <Badge p="0.2rem">{`Offer ${offer}`}</Badge>
                       <Badge p="0.2rem">{`Discount ${''}`}</Badge>
-                      {/* {tags?.map((el) => {
-                        return (
-                          <Badge p="0.2rem" colorScheme="green">
-                            {el.label}
-                          </Badge>
-                        );
-                      })} */}
                     </Flex>
                   </SimpleGrid>
                 </Box>
-                {/* <Box>
-                  <Text
-                    fontSize={{ base: "16px", lg: "18px" }}
-                    color={"yellow.300"}
-                    fontWeight={"500"}
-                    textTransform={"uppercase"}
-                    mb={"4"}
-                  >
-                    Product Details
-                  </Text>
-
-                  <List spacing={2}>
-                    <ListItem>
-                      <Text as={"span"} fontWeight={"bold"}>
-                        Brand:&nbsp;
-                      </Text>
-                      {'brand Basmati'}
-                    </ListItem>
-                    <ListItem>
-                      <Text as={"span"} fontWeight={"bold"}>
-                        Design:&nbsp;
-                      </Text>
-                      {'design '}
-                    </ListItem>
-                    <ListItem>
-                      <Text as={"span"} fontWeight={"bold"}>
-                        For:&nbsp;
-                      </Text>
-                      {'type'}
-                    </ListItem>
-
-                    <ListItem>
-                      <Text as={"span"} fontWeight={"bold"}>
-                        Category:&nbsp;
-                      </Text>
-                      {'category'}
-                    </ListItem>
-                  </List>
-                </Box> */}
               </Stack>
 
 

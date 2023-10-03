@@ -4,22 +4,27 @@ import './style.css';
 import {useSelector,useDispatch} from 'react-redux';
 import { getCartData } from '../../Redux/cartReducer/action';
 import Shopping from '../Shopping';
-import { Box, Button, Heading, Table, TableContainer, Tbody, Th, Thead, Tr } from '@chakra-ui/react';
+import { Box, Button, Heading, Table, TableContainer, Tbody, Th, Thead, Tr, useToast } from '@chakra-ui/react';
 import Crousel from '../../Components/Crousel';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const toast = useToast();
+
   const {data,isLoading} = useSelector((store)=>{
     return store.cartReducer
   });
+
   let length = data.cart?.length;
   let totalCost=data.cart?.map((ele)=>(ele.price*(ele.quantity?ele.quantity:1))).reduce((acc,i)=>acc+i,0);
-  console.log(data);
+
   useEffect(()=>{
     dispatch(getCartData())
   },[])
+
   return ( isLoading ? <Heading alignItems={'center'} textAlign={'center'}>Loading...</Heading>:
     <>
     <Box marginBottom={"30px"}>
@@ -27,7 +32,8 @@ const Cart = () => {
     </Box>
     <div className="cart-page">
       <Heading textAlign={"left"}>Shopping Cart <span style={{color:'red'}}>{` (${length} Items)`}</span> </Heading>
-      <Box width={"95%"} margin="auto">
+      {data.cart&&data.cart.length>0?
+      (<Box width={"95%"} margin="auto">
         <TableContainer>
           <Table
             bgColor={'rgb(250, 247, 247)'}
@@ -58,7 +64,8 @@ const Cart = () => {
             </Tbody>      
           </Table>
         </TableContainer>
-      </Box>
+      </Box>)
+      :(<Heading mt={'9'}>Your Cart is Empty!!</Heading>)}
     </div>
     <Heading textAlign={'right'} mr={'10%'} fontStyle={'italic'} size={'lg'}>Total Price = ₹{totalCost}</Heading>
     <Box
@@ -76,8 +83,18 @@ const Cart = () => {
             width={"100%"}
             borderRadius={"20px"}
             onClick={()=>{
-              navigate('/checkout')
+              data&&data.cart.length>0?
+              navigate('/checkout'):toast({
+                size: "500",
+                position: "top-center",
+                title: "Done.",
+                description: "Your Cart is Empty.",
+                status: "warning",
+                duration: 4000,
+                isClosable: true,
+        });
               localStorage.setItem('total',totalCost);
+
             }}
           >
             Proceed to pay

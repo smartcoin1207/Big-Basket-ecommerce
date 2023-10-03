@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { Checkbox } from "@chakra-ui/react";
 import Crousel from "../Components/Crousel";
+import axios from "axios";
 
 const Checkout = () => {
   const [formData, setFormData] = useState({
@@ -42,9 +43,8 @@ const Checkout = () => {
     // Here, you can add the logic to send the email with formData
     const userId = "";
     const serviceId = "service_te1vs2e";
-
     emailjs
-      .sendForm(serviceId, "template_uc4e7o9", e.target, "co0tG8wnNb-4M9V1U")
+      .sendForm(serviceId, "template_uc4e7o9", e.target , "co0tG8wnNb-4M9V1U")
       .then(
         (result) => {
           console.log(result.text);
@@ -53,7 +53,15 @@ const Checkout = () => {
           console.log(error.text);
         }
       );
+      localStorage.removeItem('total');
+      deleteCartData();
   };
+
+  const deleteCartData = ()=>{
+    axios.delete(`http://localhost:8080/product/alldelete`)
+    .then((res)=>console.log('cart cleared'))
+    .catch((err)=>console.log('error in clear cart'))
+  }
 
   return (
     <Box>
@@ -86,6 +94,7 @@ const Checkout = () => {
                 placeholder="Name"
                 value={formData.from_name}
                 onChange={handleChange}
+                
               />
             </FormControl>
             <FormControl>
@@ -98,6 +107,7 @@ const Checkout = () => {
                 placeholder="Email"
                 value={formData.user_email}
                 onChange={handleChange}
+
               />
             </FormControl>
             <FormControl>
@@ -198,6 +208,8 @@ const Checkout = () => {
                   <Input
                     required
                     type="text"
+                    minLength={16}
+                    maxLength={16}
                     placeholder="Valid Card NUmber"
                     border="1px solid black"
                     name="cardnumber"
