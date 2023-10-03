@@ -1,10 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-validAdminEmail = [
-  "anjutewatia008@gmail.com",
-  "sachin@gmail.com",
-  "anju@gmail.com",
-];
+validAdminEmail = ["anjutewatia008@gmail.com", "bbdata45@gmail.com"];
 
 const adminSchema = new Schema({
   name: { type: String, required: true },
