@@ -6,8 +6,9 @@ import Checkout from "../Pages/Checkoutpage";
 import Shopping from "../Pages/Shopping";
 import MensProductsCard from "../Pages/SingleProduct";
 import Dashboard from "../Pages/AdminPanel/Dashboard/Dashboard";
-import SignUp from "../Pages/AdminPanel/LoginSignUp/SignUp";
 import LoginForm from "../Pages/AdminPanel/LoginSignUp/Login";
+import SignUp from "../Pages/AdminPanel/LoginSignUp/SignUp";
+
 
 const AllRoutes  =()=>{
     return(
@@ -19,8 +20,9 @@ const AllRoutes  =()=>{
                 <Route path="/shopping" element={<Shopping/>}> </Route>
                 <Route path="/checkout" element={<Checkout/>}></Route>
                 <Route path="/dashboard" element={<Dashboard/>}></Route>
-               <Route path="/admin/signup" element={<SignUp/>}></Route>
-               <Route path="/admin/login" element={<LoginForm/>}></Route>
+                <Route path="/admin/signup" element={<SignUp/>}></Route>
+                <Route path="/admin/login" element={<LoginForm/>}></Route>
+              
             </Routes>
         </div>
     )

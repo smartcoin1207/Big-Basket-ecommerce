@@ -1,37 +1,63 @@
-import { Box, Button, Collapse, Flex, Image, ScaleFade, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Collapse, Flex, Image, ScaleFade, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useDisclosure, useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { AddIcon } from '@chakra-ui/icons'
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import './Dashboard.css';
-import Form from "./PopForm";
+import {EditForm, Form} from "./PopForm";
+import { deleteAdminData, getAdminData } from "../../../Redux/Admin/action";
 
 const Dashboard=()=>{
-    const [adminData,setAdmin] = useState([]);
-    const fetchData = async ()=>{
-        return(
-       axios.get(`http://localhost:8080/product`).
-       then((data)=>{setAdmin(data.data) })
-         .catch((err)=>{console.log(err);
-        })
-        )
-    }
+    const {adminData,isLoading} = useSelector((store)=>{return store.adminReducer});
+    const dispatch = useDispatch();
+    const toast = useToast();
     let i = 1;
     const { isOpen, onToggle } = useDisclosure();
-    useEffect(()=>{
-        fetchData();
-    },[]);
+    const [open,setOpen] = useState(false);
+    const [id,setId] = useState('');
 
+    const openForm = (id)=>{
+        setOpen(!open);
+        setId(id);
+    }
+    
     useEffect(() => {
-        if (isOpen) {
+        dispatch(getAdminData)
+        if (open) {
           document.body.style.overflow = 'auto';
         } else {
           document.body.style.overflow = 'unset';
         }
-      }, [isOpen]);
+      }, [open]);
+
+      const deleteProduct = (id)=>{
+        dispatch(deleteAdminData(id)).then(() => {
+            dispatch(getAdminData);
+          }).then(()=>{
+            toast({
+                size: "500",
+                position: "top-center",
+                title: "Done.",
+                description: "Item removed.",
+                status: "success",
+                duration: 4000,
+                isClosable: true,
+        });
+          }).catch(()=>{
+            toast({
+                size: "500",
+                position: "top-center",
+                title: "Done.",
+                description: "Something went wrong !",
+                status: "warning",
+                duration: 4000,
+                isClosable: true,
+        });
+          })
+      }
 
     return(
         <>
-        <Box>
+        <Box w={"100%"}>
             <Flex position={'sticky'} top={'9'} p={'6'} zIndex={'1'} bgColor={'#3a7bd5'} h={'80px'} alignItems={'center'} textAlign={'center'} justifyContent={'space-between'} fontWeight={'bold'}>
                 <Button disabled fontWeight={'bold'}> PRODUCTS</Button>
                 <Button onClick={onToggle} fontWeight={'bold'}><AddIcon mr={'2'} boxSize={4} color={'blue.600'} /> ADD PRODUCT</Button>
@@ -41,11 +67,14 @@ const Dashboard=()=>{
                     <Form/>
                 </Box>
             </ScaleFade>
+            <Box>
+                {open?<EditForm id={id} />:null}
+            </Box>
         <div className='AdminProdcutCard'>
-        <div className={isOpen?'blurrd':""} style={{background:'fixed'}} >
+        <div className={isOpen?'blurrd':""} >
 
         <br />
-        <TableContainer >
+        <TableContainer  width={"95%"}  margin={"auto"}>
           <Table variant="striped" colorScheme="cyan">
             <Thead  w={"100%"} bgColor={"blue.400"}>
               <Tr>
@@ -61,7 +90,7 @@ const Dashboard=()=>{
                 <Th color="white">DELETE</Th>
               </Tr>
             </Thead>
-            {adminData.length > 0 &&
+            {adminData.length&&
               adminData.map((el) => {
                   return (
                       <Tbody>
@@ -75,10 +104,10 @@ const Dashboard=()=>{
                       <td>{el.offer}</td>
                       <td>{el.quantity}</td>
                       <Td>
-                        <Button border={"1px solid gray"}>EDIT</Button>
+                        <Button onClick={()=>openForm(el._id)} border={"1px solid gray"}>EDIT</Button>
                       </Td>
                       <Td>
-                        <Button border={"1px solid gray"}>
+                        <Button onClick={()=>deleteProduct(el._id)} border={"1px solid gray"}>
                           DELETE
                         </Button>
                       </Td>

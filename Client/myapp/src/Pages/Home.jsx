@@ -8,36 +8,23 @@ import Crousel from "../Components/Crousel";
 import { useDispatch, useSelector } from "react-redux";
 import { getCartData } from "../Redux/cartReducer/action";
 import Loading from "./Loading";
+import { getAdminData } from "../Redux/Admin/action";
 const Home = ()=>{
-
-    const [data,setData] = useState([]);
-    const [load,setLoad] = useState(false);
-    // const data1 = useSelector((store)=>);
+    const {adminData,isLoading} = useSelector((store)=>{return store.adminReducer});
     const dispatch = useDispatch();
-    const fetchData = async ()=>{
-        setLoad(true);
-        return(
-       axios.get(`http://localhost:8080/product`).
-       then((data)=>{setData(data.data)
-         setLoad(false) })
-         .catch((err)=>{console.log(err);
-            setLoad(false);
-        })
-        )
-    }
+    
     useEffect(()=>{
-        fetchData();
+        dispatch(getAdminData)
         Aos.init()
-        dispatch(getCartData())
     },[]);
     
-    return( load?<Loading/> :
+    return( isLoading?<Loading/> :
         <Box>
             <Crousel/>
                  <Box width={"90%"} m={"auto"} >
                 <SimpleGrid columns={[1.1,2,3]}>
                 {
-                    data&&data.map((ele)=>(
+                    adminData&&adminData.map((ele)=>(
                         
                         <Card key={ele._id} {...ele} />
                         

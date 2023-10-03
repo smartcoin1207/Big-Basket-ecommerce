@@ -29,9 +29,7 @@ const Checkout = () => {
     month: "",
     year: "",
     cvv: "",
-    to_name: "",
-
-    // message: "",
+    to_name: ""
   });
 
   const handleChange = (e) => {
@@ -42,20 +40,8 @@ const Checkout = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Here, you can add the logic to send the email with formData
-    console.log("Form data:", formData);
     const userId = "";
     const serviceId = "service_te1vs2e";
-
-    // emailjs.sendForm(serviceId, "template_id", e.target, userId).then(
-    //   (result) => {
-    //     console.log(result.text);
-    //     alert("Email sent successfully!");
-    //   },
-    //   (error) => {
-    //     console.log(error.text);
-    //     alert("Error sending email. Please try again later.");
-    //   }
-    // );
 
     emailjs
       .sendForm(serviceId, "template_uc4e7o9", e.target, "co0tG8wnNb-4M9V1U")
@@ -79,9 +65,6 @@ const Checkout = () => {
         style={{
           width: "80%",
           margin: "auto",
-
-          // textalign: "left",
-          // bgGradient="linear(to-t, green.200, pink.500)"
           boxShadow:
             "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px",
           padding: "30px",
@@ -96,6 +79,7 @@ const Checkout = () => {
             <FormControl>
               <FormLabel>Full Name</FormLabel>
               <Input
+                required
                 type="text"
                 border={" 1px solid black"}
                 name="from_name"
@@ -107,6 +91,7 @@ const Checkout = () => {
             <FormControl>
               <FormLabel>Email Address</FormLabel>
               <Input
+                required
                 type="email"
                 border={" 1px solid black"}
                 name="user_email"
@@ -118,6 +103,7 @@ const Checkout = () => {
             <FormControl>
               <FormLabel>Mobile Number</FormLabel>
               <Input
+                required
                 type="number"
                 border={" 1px solid black"}
                 name="phone_number"
@@ -129,6 +115,7 @@ const Checkout = () => {
             <FormControl>
               <FormLabel>Address</FormLabel>
               <Input
+                required
                 type="text"
                 border={" 1px solid black"}
                 name="address"
@@ -140,6 +127,7 @@ const Checkout = () => {
             <FormControl>
               <FormLabel>State</FormLabel>
               <Input
+                required
                 type="text"
                 border={" 1px solid black"}
                 name="state"
@@ -152,6 +140,7 @@ const Checkout = () => {
             <FormControl>
               <FormLabel>City</FormLabel>
               <Input
+                required
                 type="text"
                 border={" 1px solid black"}
                 name="city"
@@ -164,6 +153,7 @@ const Checkout = () => {
             <FormControl>
               <FormLabel>PinCode</FormLabel>
               <Input
+                required
                 type="number"
                 border={" 1px solid black"}
                 name="pincode"
@@ -206,6 +196,7 @@ const Checkout = () => {
                 <Box padding="10px">
                   <Text fontWeight="bold">CARD NUMBER</Text>
                   <Input
+                    required
                     type="text"
                     placeholder="Valid Card NUmber"
                     border="1px solid black"
@@ -220,12 +211,14 @@ const Checkout = () => {
                         EXPIRY DATE
                         <SimpleGrid columns={[1, 1, 1, 2]} gap="20px">
                           <Input
+                            required
                             placeholder="Month"
                             name="month"
                             value={formData.month}
                             onChange={handleChange}
                           ></Input>
                           <Input
+                            required
                             placeholder="year"
                             name="year"
                             value={formData.year}
@@ -237,6 +230,7 @@ const Checkout = () => {
                         {" "}
                         CVV
                         <Input
+                          required
                           placeholder="CVV"
                           name="cvv"
                           value={formData.cvv}
@@ -254,7 +248,6 @@ const Checkout = () => {
           <Box
             width={"100%"}
             height={"470px"}
-            // border="2px solid blue"
             bgGradient="radial(gray.300, yellow.400, pink.200)"
           >
             <Image
@@ -263,15 +256,14 @@ const Checkout = () => {
               height={"450px"}
               objectFit="cover"
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVV4JDooUUm00Tg-5Xf-3S84F8RJe5YduTZp4etMAXKyeb3d68DNdox-kWYHYABRhiunQ&usqp=CAU"
+              alt="image"
             ></Image>
           </Box>
         </SimpleGrid>
-
+        <Text textAlign={'left'} mt={'3'} fontStyle={'italic'} fontWeight={'bold'}>Total Amount : ₹{localStorage.getItem('total')} </Text>
         <Box
-          _hove={{ backgroundColor: "green" }}
           style={{
             width: "70%",
-            backgroundColor: "green",
             borderRadius: "20px",
             margin: "auto",
             marginTop: "50px",
@@ -279,11 +271,12 @@ const Checkout = () => {
         >
           <Button
             width="100%"
-            backgroundColor="green"
+            backgroundColor="green.500"
             type="submit"
+            _hover={{bgColor:'green.300'}}
             margin="auto"
           >
-            Pay
+            PROCEED TO PAY ₹{localStorage.getItem('total')}
           </Button>
         </Box>
       </form>
