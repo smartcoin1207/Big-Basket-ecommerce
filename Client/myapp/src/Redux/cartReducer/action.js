@@ -25,7 +25,6 @@ export const deleteCartData = (id) => (dispatch) => {
     .delete(`http://localhost:8080/cart/${id}`)
     .then(() => dispatch({ type: DELETE_GET_CART_ITEM, payload: id }))
     .catch(() => dispatch({ type: DELETE_ERROR_CART_ITEM }));
-    window.location.reload();
 };
 
 

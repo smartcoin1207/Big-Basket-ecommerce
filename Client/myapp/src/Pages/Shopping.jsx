@@ -1,28 +1,35 @@
 import React from "react";
 import {
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
   Tr,
-  Th,
   Td,
-  TableCaption,
-  TableContainer,
-  Box,
-  Heading,
   Button,
   Image,
   useToast,
 } from "@chakra-ui/react";
 import { DeleteIcon } from '@chakra-ui/icons';
 import { useDispatch } from "react-redux";
-import { deleteCartData } from "../Redux/cartReducer/action";
+import { deleteCartData, getCartData } from "../Redux/cartReducer/action";
 
-const Shopping = ({_id,price,offer,image,title1,title2,title3,quantity}) => {
+const Shopping = ({_id,price,image,title1,title2,quantity}) => {
   const dispatch = useDispatch();
   const toast = useToast();
-  console.log(image);
+
+  const deleteCartProduct = ()=>{
+    dispatch(deleteCartData(_id))
+      toast({
+          size: "500",
+          position: "top-center",
+          title: "Done.",
+          description: "Item removed from your cart!.",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+  });
+  setTimeout(() => {
+    window.location.reload();
+  }, 1000);
+  }
+
   return (
     <>
               <Tr border={'2px solid black'} mb={'10px'}>
@@ -30,19 +37,8 @@ const Shopping = ({_id,price,offer,image,title1,title2,title3,quantity}) => {
                 <Td> {`${title1} || ${title2} `} </Td>
                 <Td>₹{price}</Td>
                 <Td>{quantity?quantity:1}</Td>
-                <Td>{quantity?quantity*price:price}</Td>
-                <Td><Button onClick={()=>{
-                  (dispatch(deleteCartData(_id)));
-                  toast({
-                    size: "500",
-                    position: "top-center",
-                    title: "Done.",
-                    description: "Item removed from your cart.",
-                    status: "success",
-                    duration: 4000,
-                    isClosable: true,
-            });
-                }} 
+                <Td>₹{quantity?quantity*price:price}</Td>
+                <Td><Button onClick={()=>{deleteCartProduct()}} 
                   bgColor={'red'}><DeleteIcon/></Button></Td>
               </Tr>      
             

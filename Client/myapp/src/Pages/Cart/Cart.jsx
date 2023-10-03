@@ -60,7 +60,7 @@ const Cart = () => {
         </TableContainer>
       </Box>
     </div>
-    <Heading textAlign={'right'} mr={'10%'} size={'lg'}>Total Price = {totalCost}</Heading>
+    <Heading textAlign={'right'} mr={'10%'} fontStyle={'italic'} size={'lg'}>Total Price = ₹{totalCost}</Heading>
     <Box
       alignItem={"right"}
       justifyContent={"right"}
