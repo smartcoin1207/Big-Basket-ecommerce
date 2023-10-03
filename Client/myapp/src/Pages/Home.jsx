@@ -21,18 +21,16 @@ const Home = ()=>{
     return( isLoading?<Loading/> :
         <Box>
             <Crousel/>
-                 <Box width={"90%"} m={"auto"} >
+            <Box width={"90%"} m={"auto"} >
                 <SimpleGrid columns={[1.1,2,3]}>
-                {
-                    adminData&&adminData.map((ele)=>(
-                        
-                        <Card key={ele._id} {...ele} />
-                        
+                    {
+                        adminData&&adminData.map((ele)=>(
+                            <Card key={ele._id} {...ele} />                           
                         ))
                     }
-                    </SimpleGrid>
+                </SimpleGrid>
+            </Box>
         </Box>
-                    </Box>
     )
 }
 

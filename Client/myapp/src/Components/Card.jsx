@@ -1,7 +1,6 @@
 import { Box, Button, Image, Text } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Card = ({image,title1,title2,title3,title4,offer,price,_id})=>{

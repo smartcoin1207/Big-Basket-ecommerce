@@ -27,8 +27,6 @@
     .AdminProdcutCard img{
     width: 60%;
     height: 40px;
-    
-        /* grid-template-columns: repeat(4,1fr); */
     }
     .TableContainer{
         width: 98%;
@@ -36,9 +34,7 @@
        
     }
    .blurr{
-    /* backdrop-filter: blur(8px); */
     --chakra-backdrop-blur: blur(6px);
-    /* border: 5px solid red; */
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     border-radius: 12px;
    }

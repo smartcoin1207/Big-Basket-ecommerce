@@ -8,6 +8,7 @@ import MensProductsCard from "../Pages/SingleProduct";
 import Dashboard from "../Pages/AdminPanel/Dashboard/Dashboard";
 import LoginForm from "../Pages/AdminPanel/LoginSignUp/Login";
 import SignUp from "../Pages/AdminPanel/LoginSignUp/SignUp";
+import Coniform from "../Pages/Coniform";
 
 
 const AllRoutes  =()=>{
@@ -22,7 +23,8 @@ const AllRoutes  =()=>{
                 <Route path="/dashboard" element={<Dashboard/>}></Route>
                 <Route path="/admin/signup" element={<SignUp/>}></Route>
                 <Route path="/admin/login" element={<LoginForm/>}></Route>
-              
+                <Route path="/confirm" element={<Coniform/>}></Route>
+                
             </Routes>
         </div>
     )

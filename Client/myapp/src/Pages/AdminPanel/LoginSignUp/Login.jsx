@@ -13,9 +13,10 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const LoginForm = () => {
   const toast = useToast();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -41,14 +42,10 @@ const LoginForm = () => {
       });
 
       const data = await response.json();
-      //   console.log(data);
-      //   console.log(data.token);
-
       if (response.ok) {
         // Login successful, store the JWT token in localStorage or a state variable
         localStorage.setItem("token", data.token);
         setMessage(data.message);
-        console.log(data);
         toast({
           size: "500",
           position: "top-center",
@@ -57,8 +54,8 @@ const LoginForm = () => {
           status: "success",
           duration: 4000,
           isClosable: true,
-  });
-
+        });
+        navigate('/dashboard')
       } else {
         setMessage(data.message);
         toast({

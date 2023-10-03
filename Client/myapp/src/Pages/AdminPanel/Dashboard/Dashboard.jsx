@@ -74,9 +74,9 @@ const Dashboard=()=>{
         <div className={isOpen?'blurrd':""} >
 
         <br />
-        <TableContainer  width={"95%"}  margin={"auto"}>
+        <TableContainer margin={"auto"}>
           <Table variant="striped" colorScheme="cyan">
-            <Thead  w={"100%"} bgColor={"blue.400"}>
+            <Thead bgColor={"blue.400"}>
               <Tr>
                 <Th color="white">S. No.</Th>
                 <Th color="white">Product</Th>
@@ -117,7 +117,7 @@ const Dashboard=()=>{
               })}
           </Table>
         </TableContainer>
-                </div>
+        </div>
       </div>
 
     </Box>
