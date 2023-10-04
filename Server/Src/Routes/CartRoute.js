@@ -6,7 +6,7 @@ const app = express.Router();
 app.get("/", async (req, res) => {
   try {
     let cart = await CartModel.find({ user: req._id });
-   
+
     return res.send({ message: "product in cart", cart: cart });
   } catch (e) {
     return res.send(e.message);
@@ -65,9 +65,7 @@ app.post("/:id", async (req, res) => {
 
         return res.status(201).send(cart);
 
-
         return res.status(201).send(cart);
-
       }
     } else {
       if (!type) {
@@ -143,17 +141,17 @@ app.delete("/:id", async (req, res) => {
   }
 });
 
-
-app.delete("/alldelete", async (req, res) => {
+app.delete("/all/delete", async (req, res) => {
   try {
-    let product = await CartModel.deleteMany({});
+    // Clear all cart products
+    await CartModel.deleteMany({});
+
     return res
       .status(200)
-      .send({ message: " All product Deleted successfully " });
+      .send({ message: "All cart products deleted successfully" });
   } catch (error) {
     return res.status(400).send(error.message);
   }
 });
-
 
 module.exports = app;
