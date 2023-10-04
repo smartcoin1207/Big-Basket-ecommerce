@@ -33,7 +33,7 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8080/admin/login", {
+      const response = await fetch("https://dark-rose-gharial-vest.cyclic.cloud/admin/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

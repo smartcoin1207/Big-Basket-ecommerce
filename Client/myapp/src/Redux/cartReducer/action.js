@@ -12,7 +12,7 @@ import {
 export const getCartData = () => async (dispatch) => {
   dispatch({ type: REQUEST_CART_ITEM });
   try {
-    let res = await axios.get(`http://localhost:8080/cart/`);
+    let res = await axios.get(`https://dark-rose-gharial-vest.cyclic.cloud/cart/`);
     dispatch({ type: GET_CART_ITEM, payload: res.data});
   } catch (error) {
     dispatch({ type: ERROR_CART_ITEM });
@@ -22,7 +22,7 @@ export const getCartData = () => async (dispatch) => {
 export const deleteCartData = (id) => (dispatch) => {
   dispatch({ type: DELETE_REQUEST_CART_ITEM });
   axios
-    .delete(`http://localhost:8080/cart/${id}`)
+    .delete(`https://dark-rose-gharial-vest.cyclic.cloud/cart/${id}`)
     .then(() => dispatch({ type: DELETE_GET_CART_ITEM, payload: id }))
     .catch(() => dispatch({ type: DELETE_ERROR_CART_ITEM }));
 };
@@ -30,7 +30,7 @@ export const deleteCartData = (id) => (dispatch) => {
 
 
 export const AddToCart = (item) => (dispatch) => {
-  return fetch(`http://localhost:8080/cart/${item._id}`, {
+  return fetch(`https://dark-rose-gharial-vest.cyclic.cloud/cart/${item._id}`, {
     method: "POST",
     body:JSON.stringify(item)
   })

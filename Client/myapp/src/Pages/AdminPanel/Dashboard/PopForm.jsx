@@ -29,7 +29,7 @@ export const Form = ()=>{
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/product",data);
+      const response = await axios.post("https://dark-rose-gharial-vest.cyclic.cloud/product",data);
       if (response.status === 201) {
         // alert("Product added successfully!");
         toast({
@@ -51,9 +51,9 @@ export const Form = ()=>{
   };
 
     return(
-        <Box className="blurr" zIndex={'1'} position={'absolute'} left={'0%'} right={'0'} transition={'all ease-in-out 2s'} w={'40%'} p={'5'} alignItems={'center'} textAlign={'center'} m={'auto'}>
+        <Box className="blurr" zIndex={'1'} position={'absolute'} left={'0%'} right={'0'} transition={'all ease-in-out 2s'} w={'70%'} p={'5'} alignItems={'center'} textAlign={'center'} m={'auto'}>
             <Heading>ADD PRODUCT</Heading>
-            <SimpleGrid columns={[1, 1, 1, 1]} >
+            <SimpleGrid columns={[1, 1, 1, 2]} >
                 <form onSubmit={handleSubmit}>
                     <Input mb={'3'}   
                         type="url" 
@@ -122,7 +122,7 @@ export const EditForm = (id)=>{
         try {
           // Make a PATCH request to the API endpoint with the product ID
           const response = await axios.patch(
-            `http://localhost:8080/product/${id.id}`,edit
+            `https://dark-rose-gharial-vest.cyclic.cloud/product/${id.id}`,edit
           );
           if (response.status === 200 || response.status === 204) {
             // alert("Product updated successfully!");
@@ -136,7 +136,7 @@ export const EditForm = (id)=>{
                 isClosable: true,
             });
             setEdit(initialstate);
-
+            window.location.reload();
           }
         } catch (error) {
           console.error("Error updating product:", error);
