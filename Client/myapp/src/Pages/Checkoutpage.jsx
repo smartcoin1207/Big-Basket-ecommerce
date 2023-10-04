@@ -11,12 +11,14 @@ import {
   Image,
   Text,
   Button,
+  useToast,
 } from "@chakra-ui/react";
 import { Checkbox } from "@chakra-ui/react";
 import Crousel from "../Components/Crousel";
 import axios from "axios";
 
 const Checkout = () => {
+  const toast = useToast();
   const [formData, setFormData] = useState({
     user_name: "",
     user_email: "",
@@ -44,7 +46,7 @@ const Checkout = () => {
     const userId = "";
     const serviceId = "service_te1vs2e";
     emailjs
-      .sendForm(serviceId, "template_uc4e7o9", e.target , "co0tG8wnNb-4M9V1U")
+      .sendForm(serviceId, "template_uc4e7o9", e.target, "co0tG8wnNb-4M9V1U")
       .then(
         (result) => {
           console.log(result.text);
@@ -53,14 +55,24 @@ const Checkout = () => {
           console.log(error.text);
         }
       );
-      localStorage.removeItem('total');
       deleteCartData();
   };
 
-  const deleteCartData = ()=>{
-    axios.delete(`http://localhost:8080/product/alldelete`)
-    .then((res)=>console.log('cart cleared'))
-    .catch((err)=>console.log('error in clear cart'))
+  const deleteCartData = async()=>{
+   await axios.delete('https://dark-rose-gharial-vest.cyclic.cloud/cart/all/delete')
+      .catch(error => {
+        console.error('Error deleting resource:', error);
+      });
+      localStorage.removeItem('total');
+      toast({
+        size: "500",
+        position: "top-center",
+        title: "Done.",
+        description: "Details has been sent.",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+  });
   }
 
   return (

@@ -73,7 +73,7 @@ export const addAdminDataRequest = () => {
   export const getAdminData = (dispatch) => {
     dispatch(getAdminDataRequest());
     axios
-      .get(` http://localhost:8080/product`)
+      .get(` https://dark-rose-gharial-vest.cyclic.cloud/product`)
       .then((res) => {
         dispatch(getAdminDataSuccess(res.data));
       })
@@ -85,7 +85,7 @@ export const addAdminDataRequest = () => {
     // console.log('newData',newData);
     dispatch(addAdminDataRequest());
     return axios
-      .post(`http://localhost:8080/product`, newData)
+      .post(`https://dark-rose-gharial-vest.cyclic.cloud/product`, newData)
       .then(() => {
         dispatch(addAdminDataSuccess());
       })
@@ -98,7 +98,7 @@ export const addAdminDataRequest = () => {
   export const deleteAdminData = (id) => (dispatch) => {
     dispatch(deleteAdminDataRequest());
     return axios
-      .delete(`http://localhost:8080/product/${id}`)
+      .delete(`https://dark-rose-gharial-vest.cyclic.cloud/product/${id}`)
       .then(() => {
         dispatch(deleteAdminDataSuccess());
       })
@@ -112,7 +112,7 @@ export const addAdminDataRequest = () => {
     console.log('newData,id',id,edit);
     dispatch(updateAdminDataRequest());
     return axios
-      .patch(`http://localhost:8080/product/${id}`,edit)
+      .patch(`https://dark-rose-gharial-vest.cyclic.cloud/product/${id}`,edit)
       .then((res) => {
         dispatch(updateAdminDataSuccess(res.data));
       })

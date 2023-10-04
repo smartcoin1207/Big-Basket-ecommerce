@@ -1,4 +1,4 @@
-import { Box, Button, Collapse, Flex, Image, ScaleFade, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useDisclosure, useToast } from "@chakra-ui/react";
+import { Box, Button, Collapse, Flex,Heading, Image, ScaleFade, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr,Tfoot,TableCaption, useDisclosure, useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { AddIcon } from '@chakra-ui/icons'
 import { useDispatch, useSelector } from "react-redux";
@@ -57,7 +57,7 @@ const Dashboard=()=>{
 
     return(
         <>
-        <Box w={"100%"}>
+        <Box>
             <Flex position={'sticky'} top={'9'} p={'6'} zIndex={'1'} bgColor={'#3a7bd5'} h={'80px'} alignItems={'center'} textAlign={'center'} justifyContent={'space-between'} fontWeight={'bold'}>
                 <Button disabled fontWeight={'bold'}> PRODUCTS</Button>
                 <Button onClick={onToggle} fontWeight={'bold'}><AddIcon mr={'2'} boxSize={4} color={'blue.600'} /> ADD PRODUCT</Button>
@@ -74,10 +74,18 @@ const Dashboard=()=>{
         <div className={isOpen?'blurrd':""} >
 
         <br />
-        <TableContainer margin={"auto"}>
-          <Table variant="striped" colorScheme="cyan">
+        <Box width={"95%"} margin={"auto"}>
+        <TableContainer>
+          <Table variant="striped"
+           colorScheme="cyan"  
+           w={'100%'}
+            padding={"20px"}
+            border={"1px solid grey"}
+            height={"auto"}
+            marginTop={"20px"} alignItems={'center'} 
+            textAlign={'center'}>
             <Thead bgColor={"blue.400"}>
-              <Tr>
+              <Tr alignItems={'center'} textAlign={'center'}>
                 <Th color="white">S. No.</Th>
                 <Th color="white">Product</Th>
                 <Th color="white" isNumeric>
@@ -117,6 +125,7 @@ const Dashboard=()=>{
               })}
           </Table>
         </TableContainer>
+        </Box>
         </div>
       </div>
 

@@ -37,7 +37,7 @@ export default function SingleProduct() {
 
   const fetchData = ()=>{
     setLoad(true);
-    axios.get(`http://localhost:8080/product/${id}`)
+    axios.get(`https://dark-rose-gharial-vest.cyclic.cloud/product/${id}`)
     .then((res)=>{
       setdata(res.data);
       setLoad(false)
@@ -52,7 +52,6 @@ useEffect(()=>{
     fetchData()
 },[]);
 const {image,offer,price,title1,title2,title3,rating} = data;
-console.log(data);
 const addToCartFun = () => {
     dispatch(AddToCart(data))
       .then((res) => {

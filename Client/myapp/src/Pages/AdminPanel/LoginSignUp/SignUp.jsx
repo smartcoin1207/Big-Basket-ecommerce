@@ -35,7 +35,7 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8080/admin/register", {
+      const response = await fetch("https://dark-rose-gharial-vest.cyclic.cloud/admin/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
