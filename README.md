@@ -22,5 +22,5 @@ This Project is a Full Satck application focus on E-commerce For food products. 
   * Update New Products
   * Delete New Products
  # Backend
-  Only admin  can update  ,delete  and post the  data 
-   In  backend we provide a specific email id 
+ *   Only admin  can update  ,delete  and post the  data 
+  * In  backend we provide a specific email id 
